@@ -1,0 +1,46 @@
+{
+    "Hello": "Merhaba",
+    "Login": {
+        "Email": "E-Posta",
+        "Password": "Şifre",
+        "Login": "Giriş Yap",
+        "Dont_Have_An_Account": "Hesabınız yok mu?",
+        "Register": "Kayıt Ol",
+        "Forgot_Password": "Şifremi Unuttum",
+        "Login_Success": "Giriş başarılı!",
+        "Email_Hint": "E-postanızı girin",
+        "Password_Hint": "Şifrenizi girin"
+    },
+    "SignUp": {
+        "Name": "İsim",
+        "Email": "E-Posta",
+        "Password": "Şifre",
+        "Confirm_Password": "Şifreyi Onayla",
+        "Sign_Up": "Kayıt Ol",
+        "Already_Have_An_Account": "Zaten bir hesabınız var mı?",
+        "Login": "Giriş Yap",
+        "Sign_Up_Success": "Kayıt başarılı! Lütfen giriş yapın."
+    },
+    "Settings": {
+        "Title": "Ayarlar",
+        "Logout": "Çıkış Yap",
+        "ChangePassword": "Şifre Değiştir",
+        "ChangeTheme": "Temayı Değiştir",
+        "ChangeLanguage": "Dili Değiştir",
+        "Select_Language": "Dil Seç"
+    },
+    "ChangePassword": {
+        "Title": "Şifre Değiştir",
+        "Email": "E-Posta",
+        "Send_Reset_Link": "Sıfırlama Linki Gönder",
+        "Reset_Link_Sent": "Şifre sıfırlama linki e-postanıza gönderildi."
+    },
+    "Note": {
+        "Title": "Notlar",
+        "Title_Hint": "Başlık",
+        "Content_Hint": "Notunuzu buraya girin...",
+        "Note_Updated": "Not başarıyla güncellendi!",
+        "Note_Deleted": "Not başarıyla silindi!",
+        "Copy_Success": "Not içeriği panoya kopyalandı!"
+    }
+}

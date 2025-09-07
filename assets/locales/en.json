@@ -1,0 +1,45 @@
+{
+    "Hello": "Hello",
+    "Login": {
+        "Email": "Email",
+        "Password": "Password",
+        "Login": "Login",
+        "Dont_Have_An_Account": "Don't have an account?",
+        "Register": "Sign Up",
+        "Forgot_Password": "Forgot Password?",
+        "Login_Success": "Login successful!",
+        "Email_Hint": "Enter your email",
+        "Password_Hint": "Enter your password"
+    },
+    "SignUp": {
+        "Name": "Name",
+        "Email": "Email",
+        "Password": "Password",
+        "Confirm_Password": "Confirm Password",
+        "Sign_Up": "Sign Up",
+        "Already_Have_An_Account": "Already have an account?",
+        "Sign_Up_Success": "Sign up successful! Please log in."
+    },
+    "Settings": {
+        "Title": "Settings",
+        "Logout": "Logout",
+        "ChangePassword": "Change Password",
+        "ChangeTheme": "Change Theme",
+        "ChangeLanguage": "Change Language",
+        "Select_Language": "Select Language"
+    },
+    "ChangePassword": {
+        "Title": "Change Password",
+        "Email": "Email",
+        "Send_Reset_Link": "Send Reset Link",
+        "Reset_Link_Sent": "A password reset link has been sent to your email."
+    },
+    "Note": {
+        "Title": "Notes",
+        "Title_Hint": "Title",
+        "Content_Hint": "Enter your note here...",
+        "Note_Updated": "Note updated successfully!",
+        "Note_Deleted": "Note deleted successfully!",
+        "Copy_Success": "Note content copied to clipboard!"
+    }
+}
