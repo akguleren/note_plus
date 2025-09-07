@@ -9,7 +9,7 @@ class LoginNotifier {
 
 @riverpod
 Future<User?> _getLoggedInUser(Ref ref) async {
-  return FirebaseAuth.instance.currentUser;
+  return HiveKey.token.get != null ? FirebaseAuth.instance.currentUser : null;
 }
 
 @riverpod

@@ -91,7 +91,42 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(note.title, style: ref.textTheme.body4),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(child: Text(note.title, style: ref.textTheme.body4)),
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                    visualDensity: VisualDensity.compact,
+                                    icon: Icon(TablerIcons.trash, color: ref.colorTokens.icon?.dark, size: 20),
+                                    tooltip: 'Delete',
+                                    onPressed: () async {
+                                      // confirm deletion
+                                      final confirmed = await showDialog<bool>(
+                                        context: context,
+                                        builder: (ctx) => AlertDialog(
+                                          title: const Text('Delete Note'),
+                                          content: const Text('Are you sure you want to delete this note?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.of(ctx).pop(false),
+                                              child: const Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () => Navigator.of(ctx).pop(true),
+                                              child: const Text('Delete'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                      if (confirmed == true) {
+                                        await ref.read(NoteNotifier.note.notifier).deleteNoteByModel(note);
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
                               ConstrainedBox(
                                 constraints: const BoxConstraints(maxHeight: 100),
                                 child: Html(data: note.content),

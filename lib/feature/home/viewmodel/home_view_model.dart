@@ -17,7 +17,6 @@ class _HomeViewModel extends _$HomeViewModel {
   void build() {}
 
   void navigateToSettings() {
-    HiveKey.notes.delete;
     appRouter.push(const SettingsRoute());
   }
 

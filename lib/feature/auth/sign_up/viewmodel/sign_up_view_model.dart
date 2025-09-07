@@ -21,6 +21,10 @@ class _SignUpViewModel extends _$SignUpViewModel {
     state = state.copyWith(isObscure: !state.isObscure);
   }
 
+  void changeConfirmationObscure() {
+    state = state.copyWith(isConfirmationObscure: !state.isConfirmationObscure);
+  }
+
   void doSignUp(GlobalKey<FormBuilderState> formKey) async {
     if (formKey.currentState?.saveAndValidate() ?? false) {
       final formData = formKey.currentState!.value;

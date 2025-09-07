@@ -13,8 +13,10 @@ class _Note extends _$Note {
     return notes;
   }
 
-  void deleteNote() {
-    appRouter.pop();
+  // Delete a note (local + remote when possible)
+  Future<void> deleteNoteByModel(NoteModel note) async {
+    await ref.read(noteRepositoryProvider).deleteNote(note);
+    ref.invalidateSelf();
   }
 
   Future<List<NoteModel>> getNotes() async {

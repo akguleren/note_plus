@@ -76,12 +76,12 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                       return null;
                     },
                   ]),
-                  obscureText: state.isObscure,
+                  obscureText: state.isConfirmationObscure,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       splashRadius: 1,
                       icon: Icon(state.isConfirmationObscure ? Icons.visibility : Icons.visibility_off),
-                      onPressed: vm.changeObscure,
+                      onPressed: vm.changeConfirmationObscure,
                     ),
                   ),
                 ).toLabelWithHelperText(context, labelText: tr('SignUp.Confirm_Password')),

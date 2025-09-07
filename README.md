@@ -21,6 +21,12 @@ A Flutter-based note-taking application with advanced features for organizing an
 - Multi language support
 - Cross-platform compatibility (iOS, Android, Web)
 
+## AI Features (Not Implemented)
+- Summarize
+- Voice to text conversion
+- Image to text conversion
+- Image analizer
+
 ## Prerequisites
 
 - Flutter SDK (>=3.0.0)

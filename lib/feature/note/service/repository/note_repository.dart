@@ -16,7 +16,7 @@ NoteRepository noteRepository(Ref ref) => NoteRepositoryImpl(ref.watch(dioClient
 abstract class NoteRepository {
   Future<void> createNote(NoteModel note);
   Future<void> updateNote(NoteModel payload);
-  Future<void> deleteNote(String noteId);
+  Future<void> deleteNote(NoteModel note); // updated signature
   Future<List<NoteModel>> fetchNotes();
   Future<void> syncWithApi();
 }
@@ -36,7 +36,7 @@ class NoteRepositoryImpl implements NoteRepository {
   }
 
   bool _hasCurrentUser() {
-    return FirebaseAuth.instance.currentUser != null;
+    return HiveKey.token.get != null ? FirebaseAuth.instance.currentUser != null : false;
   }
 
   @override
@@ -87,16 +87,22 @@ class NoteRepositoryImpl implements NoteRepository {
   }
 
   @override
-  Future<void> deleteNote(String noteId) async {
-    // Delete locally
+  Future<void> deleteNote(NoteModel note) async {
+    // Delete locally (handle notes with or without id)
     final current = HiveKey.notes.get?['local'] ?? <NoteModel>[];
-    final updatedList = current.where((e) => e.id != noteId).toList();
+    final updatedList = current.where((e) {
+      if (note.id != null) {
+        return e.id != note.id; // remove by id
+      }
+      // For local-only notes (id == null) match by fields unlikely to collide
+      return !(e.id == null && e.title == note.title && e.content == note.content && e.createdAt == note.createdAt);
+    }).toList();
     await HiveKey.notes.save({'local': updatedList});
 
-    // Delete from API if connected and user is authenticated
-    if (await _isConnected() && _hasCurrentUser()) {
+    // Delete from API if connected and user is authenticated and note has id
+    if (note.id != null && await _isConnected() && _hasCurrentUser()) {
       try {
-        await _dio.delete('/notes/$noteId');
+        await _dio.delete('/notes/${note.id}');
       } catch (e) {
         dev.log('Failed to delete note from API: $e');
       }
@@ -105,8 +111,9 @@ class NoteRepositoryImpl implements NoteRepository {
 
   @override
   Future<List<NoteModel>> fetchNotes() async {
-    final localNotes = HiveKey.notes.get?['local'] ?? <NoteModel>[];
-    return localNotes;
+    if (!await _isConnected() || !_hasCurrentUser()) return HiveKey.notes.get?['local'] ?? <NoteModel>[];
+    final response = await _dio.get('/notes');
+    return (response.data as List).map((e) => NoteModel.fromJson(e)).toList();
   }
 
   @override

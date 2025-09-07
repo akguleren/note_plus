@@ -238,12 +238,23 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    bool byPassJsonConversion = false,
   }) async {
     try {
+      dynamic requestData;
+
+      if (payload is FormData) {
+        requestData = payload;
+      } else if (payload is INetworkModel) {
+        requestData = payload.toJson();
+      } else if (payload is List<INetworkModel>) {
+        requestData = payload.map((e) => e.toJson()).toList();
+      } else {
+        requestData = payload;
+      }
+
       final Response response = await _dio.delete(
         path,
-        data: byPassJsonConversion ? payload : payload.toJson(),
+        data: requestData,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
